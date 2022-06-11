@@ -3,9 +3,14 @@ import { useState } from "react";
 
 const App = () => {
   const [name, setName] = useState("");
-  const [userInfo, setUserInfo] = useState([{name: "JohnDoe"}]);
+  const [userInfo, setUserInfo] = useState({});
 
-  const handleSubmit = () => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    fetch("https://api.github.com/users/" + name)
+      .then((data) => data.json())
+      .then((data) => setUserInfo(data));
+  };
 
   return (
     <div className="App">
@@ -23,17 +28,27 @@ const App = () => {
           <button type="submit">Go</button>
         </form>
       </header>
-      {userInfo.length>0 && (
-        <div className="user-info">
-          {userInfo.map((k, i) => {
-            return (
-              <div key={i}>
-                <div>Name: {k.name}</div>
-                <div>Other: other info</div>
-              </div>
-            );
-          })}
-        </div>
+      {Object.keys(userInfo).length > 0 && (
+        <table className="user-info">
+          <tbody>
+            <tr>
+              <td>
+                <img src={userInfo.avatar_url} width="50px" alt="" />
+              </td>
+              <td>
+                <b> <h3>{userInfo.login}</h3></b>
+              </td>
+            </tr>
+            {Object.entries(userInfo).map(([k, v], i) => {
+              return (
+                <tr key={i}>
+                  <td>{k}</td>
+                  <td>{v}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       )}
     </div>
   );

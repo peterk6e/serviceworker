@@ -4,13 +4,15 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 40vh;
+  min-height: 10vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(8px + 2vmin);
   color: white;
+  width: 96%;
+  margin: 0 auto;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -29,7 +31,7 @@ input:focus {
 }
 
 .user-info {
-  background: rgb(225, 225, 225);
+  background: #ccc;
   width: 50%;
   padding: 30px;
   margin: 20px auto;
