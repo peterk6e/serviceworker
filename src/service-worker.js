@@ -70,6 +70,3 @@ self.addEventListener('message', (event) => {
 });
 
 // Any other custom service worker logic can go here.
-self.addEventListener("fetch", (e) => {
-  console.log(`interception ${e.request.method} to ${e.request.url}`);
-});
